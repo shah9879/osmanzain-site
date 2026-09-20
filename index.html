@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Osman Zain · AI &amp; Automation Engineer</title>
+  <meta name="description" content="Osman Zain builds LLM systems and tests them properly: evals, guardrails and automation that hold up on real inputs. Projects: LeadPilot, GarageBot, OutboundOps.">
+  <meta name="theme-color" content="#0A0F1E">
+  <meta name="color-scheme" content="dark">
+  <link rel="canonical" href="https://osmanzain.com/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Osman Zain · AI &amp; Automation Engineer">
+  <meta property="og:description" content="LLM systems with evals and guardrails: a lead-qualification pipeline, a RAG voice receptionist, a cold-calling CRM.">
+  <meta property="og:url" content="https://osmanzain.com/">
+  <meta property="og:image" content="https://osmanzain.com/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230A0F1E'/%3E%3Ctext x='16' y='22' font-family='monospace' font-size='16' font-weight='700' text-anchor='middle' fill='%235FE3C0'%3EOZ%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+<a class="skip" href="#projects">Skip to projects</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="logo mono" href="#top" aria-label="Home">osman<span>.</span>zain</a>
+    <nav class="nav-links mono" aria-label="Main">
+      <a href="#projects">projects</a>
+      <a href="#skills">skills</a>
+      <a href="#about">about</a>
+      <a href="#contact">contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero wrap">
+    <div class="hero-copy">
+      <p class="hello mono">&gt; hello, world. I'm</p>
+      <h1>Osman Zain</h1>
+      <p class="role mono">AI &amp; automation engineer</p>
+      <p class="bio">I build LLM systems and test them properly: evals, guardrails and automation that hold up on real inputs. Recent work includes a lead-qualification pipeline whose prompt I raised from 67% to 81% on an eval I wrote, a voice receptionist grounded in a shop's own data, and a cold-calling CRM.</p>
+      <div class="cta">
+        <a class="btn" href="#projects">View projects</a>
+        <a class="btn ghost" data-github href="https://github.com/shah9879">GitHub ↗</a>
+        <a class="btn ghost" data-email href="#contact">Email me</a>
+      </div>
+      <p class="status mono"><span class="dot"></span>Open to AI / automation engineering roles</p>
+    </div>
+
+    <div class="term" aria-hidden="true">
+      <div class="term-bar mono"><i></i><i></i><i></i><span>~/osman</span></div>
+<pre class="mono"><span class="p">$</span> whoami
+osman zain · ai/automation engineer
+
+<span class="p">$</span> stack --primary
+python · claude api · n8n · fastapi · sqlite
+
+<span class="p">$</span> ls projects/
+<span class="k">leadpilot/</span>  <span class="k">garagebot/</span>  <span class="k">outboundops/</span>
+
+<span class="p">$</span> cat education.txt
+BS Computer Science, semester 7
+Virtual University of Pakistan</pre>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="section wrap" id="projects">
+    <h2><span class="hash mono">#</span>Projects</h2>
+    <p class="sub">Four things I've built, with the results and the caveats.</p>
+
+    <div class="cards">
+
+      <article class="card">
+        <header class="card-head"><h3>LeadPilot</h3><span class="chip mono">public repo</span></header>
+        <p class="desc">AI lead qualification and booking automation. Claude qualifies inbound roofing leads over text; an n8n workflow classifies each one, books an inspection, saves it to a CRM and alerts a human.</p>
+        <ul class="proof">
+          <li>Built the eval harness first: 12 cases, a simulated customer, rule-based and LLM-judged checks. It found its own judge was unreliable, and I fixed that before trusting any result.</li>
+          <li>Prompt v1 → v2 on the same eval: <b>67% → 81%</b> (Haiku 4.5, 36 runs) and <b>83% → 100%</b> (Opus 5, 12 runs).</li>
+          <li>Enforced "never quote a price" in code after Haiku wrote "$8k to $25k+" under pressure. 97 offline tests.</li>
+        </ul>
+        <ul class="tags mono"><li>Python</li><li>n8n</li><li>Claude API</li><li>SQLite</li><li>JavaScript</li><li>Evals</li></ul>
+        <p class="note">Small self-written case set: directional, not a benchmark. Runs locally; no live texts are sent.</p>
+        <div class="links mono"><a href="https://github.com/shah9879/leadpilot">GitHub ↗</a><a href="https://github.com/shah9879/leadpilot#eval-results">Eval results ↗</a></div>
+      </article>
+
+      <article class="card card-wide" id="garagebot">
+        <header class="card-head"><h3 data-gb-name>GarageBot</h3><span class="chip mono">private repo</span></header>
+        <p class="desc">AI voice receptionist for auto repair shops. It answers a shop's forwarded calls from that shop's own hours, services and prices, then hands the shop a job card.</p>
+        <ul class="proof">
+          <li>Multi-tenant RAG on FastAPI: a separate ChromaDB collection per shop so one shop's data never enters another's answers.</li>
+          <li>OpenAI-compatible streaming endpoint used as a Telnyx AI Assistant's custom LLM. Tuned prompts to keep spoken replies to about 15 words.</li>
+          <li>Debugged real call failures from raw requests: caller identity fields, retried webhooks, and a flaky tunnel behind slow replies.</li>
+        </ul>
+        <ul class="tags mono"><li>Python</li><li>FastAPI</li><li>ChromaDB</li><li>LangChain</li><li>Claude API</li><li>Telnyx Voice AI</li></ul>
+
+        <div class="demo" aria-label="Recorded demo call">
+          <div class="demo-head mono"><span>▶ recorded call</span><span data-line-label>web test call</span></div>
+          <div class="demo-grid">
+            <div class="player">
+              <div class="controls">
+                <button class="play" type="button" data-play aria-label="Play or pause the demo call">
+                  <svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>
+                  <svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4.5h4.5v15H6zM13.5 4.5H18v15h-4.5z"/></svg>
+                </button>
+                <span class="time mono"><span data-time>00:00</span> / <span data-total>00:00</span></span>
+                <div class="levels" data-levels aria-hidden="true"></div>
+                <button class="speed mono" type="button" data-speed aria-label="Playback speed">1×</button>
+              </div>
+              <div class="scrub" data-timeline role="slider" tabindex="0" aria-label="Seek through the call" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+              <ol class="transcript" data-transcript aria-label="Call transcript"></ol>
+            </div>
+            <aside class="jobcard" aria-label="Job card">
+              <div class="jc-head mono"><span>job_card</span><span data-jc-state>waiting</span></div>
+              <dl class="spec" data-spec></dl>
+              <p class="jc-foot">Extracted from the transcript as the caller states each fact.</p>
+            </aside>
+          </div>
+          <p class="note" data-disclosure></p>
+        </div>
+
+      </article>
+
+      <article class="card">
+        <header class="card-head"><h3>OutboundOps</h3><span class="chip mono">private repo</span></header>
+        <p class="desc">Cold-calling CRM and lead-gen platform. A dependency-free Python backend built around real, concurrent, webhook-driven calls.</p>
+        <ul class="proof">
+          <li>Standard-library Python around Telnyx Call Control for outbound and inbound calls across two countries, with a persistent webhook server dispatching each call to its own thread.</li>
+          <li>Browser softphone (Telnyx WebRTC) embedded in the CRM, a call queue with stage rules, and lead sourcing from the Google Places API. Deployed on Fly.io.</li>
+        </ul>
+        <ul class="tags mono"><li>Python</li><li>SQLite</li><li>Telnyx Call Control</li><li>WebRTC</li><li>Fly.io</li><li>Google Places API</li></ul>
+      </article>
+
+      <article class="card">
+        <header class="card-head"><h3>Buildstone Digital</h3><span class="chip mono">agency</span></header>
+        <p class="desc">A web design agency I run: fast, simple websites for local trades and auto shops.</p>
+        <ul class="tags mono"><li>HTML</li><li>CSS</li><li>JavaScript</li><li>Web design</li></ul>
+        <div class="links mono" data-buildstone hidden><a data-buildstone-link href="#">Visit the site ↗</a></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="section wrap" id="skills">
+    <h2><span class="hash mono">#</span>Skills</h2>
+    <div class="skills">
+      <div class="skill-row"><h3 class="mono">llm / ai</h3><ul class="tags mono"><li>Anthropic Claude API</li><li>Prompt iteration against evals</li><li>LLM-as-judge design</li><li>Guardrails &amp; output validation</li><li>Structured output / tool use</li><li>RAG</li><li>ChromaDB</li><li>LangChain</li><li>Sentence-Transformers</li></ul></div>
+      <div class="skill-row"><h3 class="mono">automation &amp; backend</h3><ul class="tags mono"><li>Python</li><li>n8n</li><li>FastAPI</li><li>Flask</li><li>SQLite / SQL</li><li>Webhooks &amp; idempotency</li><li>IMAP / SMTP</li><li>JavaScript</li></ul></div>
+      <div class="skill-row"><h3 class="mono">voice &amp; telephony</h3><ul class="tags mono"><li>Telnyx Call Control</li><li>Telnyx Voice AI</li><li>WebRTC</li></ul></div>
+      <div class="skill-row"><h3 class="mono">data &amp; ml</h3><ul class="tags mono"><li>Pandas</li><li>NumPy</li><li>Scikit-learn</li><li>XGBoost</li><li>Model evaluation</li></ul></div>
+      <div class="skill-row"><h3 class="mono">quality &amp; tools</h3><ul class="tags mono"><li>Eval harness design</li><li>Offline tests with fakes</li><li>Prompt-injection testing</li><li>Git / GitHub</li><li>Tailwind CSS</li><li>Fly.io</li></ul></div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section wrap" id="about">
+    <h2><span class="hash mono">#</span>About</h2>
+    <div class="about">
+      <p>I'm a computer science student who builds working AI systems rather than notebooks. The work that matters to me is the unglamorous part: an eval that tells you whether a prompt change helped, a guard in code for the rule a model keeps breaking, and tracing a failure back to its real cause instead of guessing.</p>
+      <p>I run a small web design agency, which keeps me close to what small businesses actually need from software: fewer missed calls, faster replies, and details captured somewhere they'll see them.</p>
+      <dl class="edu mono">
+        <div><dt>education</dt><dd>BS Computer Science, Virtual University of Pakistan</dd></div>
+        <div><dt>status</dt><dd>Semester 7, in progress</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section wrap" id="contact">
+    <h2><span class="hash mono">#</span>Contact</h2>
+    <p class="sub">Hiring for an AI or automation role, or want to talk about a project? Email is fastest.</p>
+    <ul class="contact mono">
+      <li><span>email</span><a data-email-text href="#"></a></li>
+      <li><span>github</span><a data-github-text href="#"></a></li>
+      <li data-linkedin-row hidden><span>linkedin</span><a data-linkedin-link href="#"></a></li>
+    </ul>
+  </section>
+</main>
+
+<footer class="foot"><div class="wrap foot-inner mono"><span>© <span data-year>2026</span> Osman Zain</span><span>osmanzain.com</span></div></footer>
+
+<audio id="audio" preload="metadata"></audio>
+<script src="site.config.js"></script>
+<script src="assets/demo.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
