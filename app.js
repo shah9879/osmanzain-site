@@ -16,7 +16,6 @@
     $("[data-linkedin-row]").hidden = false;
     $$("[data-linkedin-link]").forEach(function (a) { a.href = cfg.linkedin; a.textContent = cfg.linkedin.replace("https://www.", "").replace("https://", ""); });
   }
-  if (cfg.buildstoneUrl) { $("[data-buildstone]").hidden = false; $("[data-buildstone-link]").href = cfg.buildstoneUrl; }
   if (cfg.garagebotName) $$("[data-gb-name]").forEach(function (e) { e.textContent = cfg.garagebotName; });
   $$("[data-year]").forEach(function (e) { e.textContent = new Date().getFullYear(); });
 
