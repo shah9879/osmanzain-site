@@ -8,10 +8,16 @@
   function fmt(s) { s = Math.max(0, Math.floor(s)); return String(Math.floor(s / 60)).padStart(2, "0") + ":" + String(s % 60).padStart(2, "0"); }
 
   // ---------- links from site.config.js: an empty value hides the link, so nothing points nowhere ----------
-  $$("[data-github]").forEach(function (a) { a.href = cfg.github; });
-  $$("[data-email]").forEach(function (a) { a.href = "mailto:" + cfg.email; });
   $$("[data-email-text]").forEach(function (a) { a.href = "mailto:" + cfg.email; a.textContent = cfg.email; });
   $$("[data-github-text]").forEach(function (a) { a.href = cfg.github; a.textContent = cfg.github.replace("https://", ""); });
+  var social = {
+    github: cfg.github, linkedin: cfg.linkedin, email: cfg.email && "mailto:" + cfg.email,
+    whatsapp: cfg.whatsappNumber && "https://wa.me/" + cfg.whatsappNumber + "?text=" + encodeURIComponent("Hi Osman, I found your portfolio at osmanzain.com.")
+  };
+  $$("[data-social]").forEach(function (a) {
+    var url = social[a.getAttribute("data-social")];
+    if (url) a.href = url; else a.hidden = true;   // no value configured: no link
+  });
   if (cfg.whatsappNumber) {
     $("[data-whatsapp-row]").hidden = false;
     $$("[data-whatsapp-link]").forEach(function (a) { a.href = "https://wa.me/" + cfg.whatsappNumber; a.textContent = cfg.whatsappDisplay || ("+" + cfg.whatsappNumber); });

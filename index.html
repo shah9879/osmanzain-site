@@ -46,8 +46,8 @@
       <p class="bio">I build LLM systems and test them properly: evals, guardrails and automation that hold up on real inputs. Recent work includes a voice receptionist grounded in a shop's own data, a lead-qualification pipeline whose prompt I raised from 67% to 81% on an eval I wrote, and an email outreach tracker that reads and classifies its own replies.</p>
       <div class="cta">
         <a class="btn" href="#projects">View projects</a>
-        <a class="btn ghost" data-github href="https://github.com/shah9879">GitHub ↗</a>
-        <a class="btn ghost" data-email href="#contact">Email me</a>
+        <a class="btn wa" data-social="whatsapp" target="_blank" rel="noopener" href="#"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>WhatsApp me</a>
+        <a class="btn ghost" data-social="email" href="#"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 7l8.5 6 8.5-6"/></svg>Email me</a>
       </div>
       <p class="status mono"><span class="dot"></span>Open to AI / automation engineering roles</p>
     </div>
@@ -76,11 +76,10 @@ python · claude api · n8n · fastapi · sqlite
 
       <article class="card card-wide" id="garagebot">
         <header class="card-head"><h3 data-gb-name>GarageBot</h3><span class="chip mono">private repo</span></header>
-        <div class="problem">
-          <span class="label mono">the problem</span>
-          <p>Independent auto repair shops lose bookings every week because nobody can pick up when they're under a car or the shop is closed. By my estimate that's 3 to 5 bookings a week; at $150 each, roughly <b>$23,000 to $39,000 a year</b>. It's an estimate from my own arithmetic, not measured data.</p>
-        </div>
-        <p class="desc"><b>What I built:</b> an AI receptionist for U.S. auto repair shops. It answers calls and WhatsApp messages around the clock, trained on each shop's own hours, services and prices, then hands the shop a job card with the caller's details. Fewer missed calls, fewer lost bookings, no extra staff.</p>
+        <dl class="brief">
+          <div class="row"><dt class="mono l-problem">problem</dt><dd>Independent auto repair shops lose bookings every week because nobody can pick up when they're under a car or the shop is closed. By my estimate that's 3 to 5 bookings a week; at $150 each, roughly <b>$23,000 to $39,000 a year</b>. It's an estimate from my own arithmetic, not measured data.</dd></div>
+          <div class="row"><dt class="mono l-built">what I built</dt><dd>an AI receptionist for U.S. auto repair shops. It answers calls and WhatsApp messages around the clock, trained on each shop's own hours, services and prices, then hands the shop a job card with the caller's details. Fewer missed calls, fewer lost bookings, no extra staff.</dd></div>
+        </dl>
         <ul class="proof">
           <li>Multi-tenant RAG on FastAPI: a separate ChromaDB collection per shop so one shop's data never enters another's answers.</li>
           <li>OpenAI-compatible streaming endpoint used as a Telnyx AI Assistant's custom LLM. Tuned prompts to keep spoken replies to about 15 words.</li>
@@ -117,19 +116,13 @@ python · claude api · n8n · fastapi · sqlite
 
       <article class="card">
         <header class="card-head"><h3>LeadPilot</h3><span class="chip mono">public repo</span></header>
-        <div class="problem">
-          <span class="label mono">the problem</span>
-          <p>Leads from Facebook ads, website forms and texts go cold when nobody replies in the first few minutes. Staff can't answer instantly, ask the same qualifying questions every time, tell a serious buyer from a tire-kicker, or spot a storm-damage emergency in a busy inbox.</p>
-        </div>
-        <p class="desc"><b>What I built:</b> an AI lead qualification and booking pipeline, tested on residential roofing. Claude replies straight away and asks the qualifying questions. An n8n workflow then sorts each lead (hot, warm, cold, disqualified or handoff), books an inspection, saves it to a CRM and alerts a person for anything urgent.</p>
-        <div class="usecases">
-          <span class="label mono">use cases</span>
-          <ul>
-            <li><b>Paid-ad leads.</b> Anything that can post a message to its webhook, such as a Facebook lead-form automation, a web form or an inbound text, gets a first reply and a classification before a human looks.</li>
+        <dl class="brief">
+          <div class="row"><dt class="mono l-problem">problem</dt><dd>Leads from Facebook ads, website forms and texts go cold when nobody replies in the first few minutes. Staff can't answer instantly, ask the same qualifying questions every time, tell a serious buyer from a tire-kicker, or spot a storm-damage emergency in a busy inbox.</dd></div>
+          <div class="row"><dt class="mono l-built">what I built</dt><dd>an AI lead qualification and booking pipeline, tested on residential roofing. Claude replies straight away and asks the qualifying questions. An n8n workflow then sorts each lead (hot, warm, cold, disqualified or handoff), books an inspection, saves it to a CRM and alerts a person for anything urgent.</dd></div>
+          <div class="row"><dt class="mono l-uses">use cases</dt><dd><ul class="uses"><li><b>Paid-ad leads.</b> Anything that can post a message to its webhook, such as a Facebook lead-form automation, a web form or an inbound text, gets a first reply and a classification before a human looks.</li>
             <li><b>After hours and storm surges.</b> Hail season floods the inbox; nothing waits until morning.</li>
-            <li><b>Questions it handles:</b> "How much?" (it won't quote a price, and offers a free inspection); "Are you a bot?" (it says it's automated); an active roof leak (safety advice, then a person); renters and out-of-area callers (politely disqualified); commercial properties and angry customers (handed to a person).</li>
-          </ul>
-        </div>
+            <li><b>Questions it handles:</b> "How much?" (it won't quote a price, and offers a free inspection); "Are you a bot?" (it says it's automated); an active roof leak (safety advice, then a person); renters and out-of-area callers (politely disqualified); commercial properties and angry customers (handed to a person).</li></ul></dd></div>
+        </dl>
         <ul class="proof">
           <li>Built the eval harness first: 12 cases, a simulated customer, rule-based and LLM-judged checks. It found its own judge was unreliable, and I fixed that before trusting any result.</li>
           <li>Prompt v1 → v2 on the same eval: <b>67% → 81%</b> (Haiku 4.5, 36 runs) and <b>83% → 100%</b> (Opus 5, 12 runs).</li>
@@ -142,11 +135,10 @@ python · claude api · n8n · fastapi · sqlite
 
       <article class="card">
         <header class="card-head"><h3>ReachPilot</h3><span class="chip mono">local project</span></header>
-        <div class="problem">
-          <span class="label mono">the problem</span>
-          <p>Cold email outreach falls apart after the send: nobody knows who opened it, who clicked, or who replied. Replies sit unread, follow-ups get forgotten, and someone has to work out what each reply actually wants.</p>
-        </div>
-        <p class="desc"><b>What I built:</b> an email outreach tracker. It sends the emails, tracks opens and clicks, reads the inbox for replies, and automatically follows up with people who haven't engaged (after 3 days, at most twice). Claude then reads each reply and labels it with the sender's intent, a one-line summary and a suggested next action.</p>
+        <dl class="brief">
+          <div class="row"><dt class="mono l-problem">problem</dt><dd>Cold email outreach falls apart after the send: nobody knows who opened it, who clicked, or who replied. Replies sit unread, follow-ups get forgotten, and someone has to work out what each reply actually wants.</dd></div>
+          <div class="row"><dt class="mono l-built">what I built</dt><dd>an email outreach tracker. It sends the emails, tracks opens and clicks, reads the inbox for replies, and automatically follows up with people who haven't engaged (after 3 days, at most twice). Claude then reads each reply and labels it with the sender's intent, a one-line summary and a suggested next action.</dd></div>
+        </dl>
         <ul class="proof">
           <li>Reply analysis is schema-validated and advisory only: a failed call never blocks reply detection, and it was tested against a reply that tried to hijack the classifier.</li>
           <li>Australian Spam Act rules are enforced in code: unsubscribed contacts can never be sent to, and the unsubscribe link needs a confirming click so mail scanners can't opt people out.</li>
@@ -192,7 +184,17 @@ python · claude api · n8n · fastapi · sqlite
   </section>
 </main>
 
-<footer class="foot"><div class="wrap foot-inner mono"><span>© <span data-year>2026</span> Osman Zain</span><span>osmanzain.com</span></div></footer>
+<footer class="foot">
+  <div class="wrap foot-inner">
+    <span class="mono">© <span data-year>2026</span> Osman Zain · osmanzain.com</span>
+    <nav class="socials" aria-label="Find me elsewhere">
+      <a data-social="github" href="#" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a>
+      <a data-social="linkedin" href="#" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+      <a data-social="whatsapp" href="#" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+      <a data-social="email" href="#" aria-label="Email" title="Email"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 7l8.5 6 8.5-6"/></svg></a>
+    </nav>
+  </div>
+</footer>
 
 <audio id="audio" preload="metadata"></audio>
 <script src="site.config.js"></script>
