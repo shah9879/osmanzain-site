@@ -4,13 +4,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Osman Zain · AI &amp; Automation Engineer</title>
-  <meta name="description" content="Osman Zain builds LLM systems and tests them properly: evals, guardrails and automation that hold up on real inputs. Projects: LeadPilot, GarageBot, OutboundOps.">
+  <meta name="description" content="Osman Zain builds LLM systems and tests them properly: evals, guardrails and automation that hold up on real inputs. Projects: GarageBot, LeadPilot, OutboundOps.">
   <meta name="theme-color" content="#FBFCFF">
   <meta name="color-scheme" content="light">
   <link rel="canonical" href="https://osmanzain.com/">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Osman Zain · AI &amp; Automation Engineer">
-  <meta property="og:description" content="LLM systems with evals and guardrails: a lead-qualification pipeline, a RAG voice receptionist, a cold-calling CRM.">
+  <meta property="og:description" content="LLM systems with evals and guardrails: a RAG voice receptionist, a lead-qualification pipeline, a cold-calling CRM.">
   <meta property="og:url" content="https://osmanzain.com/">
   <meta property="og:image" content="https://osmanzain.com/og.png">
   <meta name="twitter:card" content="summary_large_image">
@@ -43,7 +43,7 @@
       <p class="hello mono">&gt; hello, world. I'm</p>
       <h1>Osman Zain</h1>
       <p class="role mono">AI &amp; automation engineer</p>
-      <p class="bio">I build LLM systems and test them properly: evals, guardrails and automation that hold up on real inputs. Recent work includes a lead-qualification pipeline whose prompt I raised from 67% to 81% on an eval I wrote, a voice receptionist grounded in a shop's own data, and a cold-calling CRM.</p>
+      <p class="bio">I build LLM systems and test them properly: evals, guardrails and automation that hold up on real inputs. Recent work includes a voice receptionist grounded in a shop's own data, a lead-qualification pipeline whose prompt I raised from 67% to 81% on an eval I wrote, and a cold-calling CRM.</p>
       <div class="cta">
         <a class="btn" href="#projects">View projects</a>
         <a class="btn ghost" data-github href="https://github.com/shah9879">GitHub ↗</a>
@@ -61,11 +61,8 @@ osman zain · ai/automation engineer
 python · claude api · n8n · fastapi · sqlite
 
 <span class="p">$</span> ls projects/
-<span class="k">leadpilot/</span>  <span class="k">garagebot/</span>  <span class="k">outboundops/</span>
-
-<span class="p">$</span> cat education.txt
-BS Computer Science, semester 7
-Virtual University of Pakistan</pre>
+<span class="k">garagebot/</span>  <span class="k">leadpilot/</span>  <span class="k">outboundops/</span>
+</pre>
     </div>
   </section>
 
@@ -76,18 +73,6 @@ Virtual University of Pakistan</pre>
 
     <div class="cards">
 
-      <article class="card">
-        <header class="card-head"><h3>LeadPilot</h3><span class="chip mono">public repo</span></header>
-        <p class="desc">AI lead qualification and booking automation. Claude qualifies inbound roofing leads over text; an n8n workflow classifies each one, books an inspection, saves it to a CRM and alerts a human.</p>
-        <ul class="proof">
-          <li>Built the eval harness first: 12 cases, a simulated customer, rule-based and LLM-judged checks. It found its own judge was unreliable, and I fixed that before trusting any result.</li>
-          <li>Prompt v1 → v2 on the same eval: <b>67% → 81%</b> (Haiku 4.5, 36 runs) and <b>83% → 100%</b> (Opus 5, 12 runs).</li>
-          <li>Enforced "never quote a price" in code after Haiku wrote "$8k to $25k+" under pressure. 97 offline tests.</li>
-        </ul>
-        <ul class="tags mono"><li>Python</li><li>n8n</li><li>Claude API</li><li>SQLite</li><li>JavaScript</li><li>Evals</li></ul>
-        <p class="note">Small self-written case set: directional, not a benchmark. Runs locally; no live texts are sent.</p>
-        <div class="links mono"><a href="https://github.com/shah9879/leadpilot">GitHub ↗</a><a href="https://github.com/shah9879/leadpilot#eval-results">Eval results ↗</a></div>
-      </article>
 
       <article class="card card-wide" id="garagebot">
         <header class="card-head"><h3 data-gb-name>GarageBot</h3><span class="chip mono">private repo</span></header>
@@ -127,6 +112,19 @@ Virtual University of Pakistan</pre>
       </article>
 
       <article class="card">
+        <header class="card-head"><h3>LeadPilot</h3><span class="chip mono">public repo</span></header>
+        <p class="desc">AI lead qualification and booking automation. Claude qualifies inbound roofing leads over text; an n8n workflow classifies each one, books an inspection, saves it to a CRM and alerts a human.</p>
+        <ul class="proof">
+          <li>Built the eval harness first: 12 cases, a simulated customer, rule-based and LLM-judged checks. It found its own judge was unreliable, and I fixed that before trusting any result.</li>
+          <li>Prompt v1 → v2 on the same eval: <b>67% → 81%</b> (Haiku 4.5, 36 runs) and <b>83% → 100%</b> (Opus 5, 12 runs).</li>
+          <li>Enforced "never quote a price" in code after Haiku wrote "$8k to $25k+" under pressure. 97 offline tests.</li>
+        </ul>
+        <ul class="tags mono"><li>Python</li><li>n8n</li><li>Claude API</li><li>SQLite</li><li>JavaScript</li><li>Evals</li></ul>
+        <p class="note">Small self-written case set: directional, not a benchmark. Runs locally; no live texts are sent.</p>
+        <div class="links mono"><a href="https://github.com/shah9879/leadpilot">GitHub ↗</a><a href="https://github.com/shah9879/leadpilot#eval-results">Eval results ↗</a></div>
+      </article>
+
+      <article class="card">
         <header class="card-head"><h3>OutboundOps</h3><span class="chip mono">private repo</span></header>
         <p class="desc">Cold-calling CRM and lead-gen platform. A dependency-free Python backend built around real, concurrent, webhook-driven calls.</p>
         <ul class="proof">
@@ -154,12 +152,8 @@ Virtual University of Pakistan</pre>
   <section class="section wrap" id="about">
     <h2><span class="hash mono">#</span>About</h2>
     <div class="about">
-      <p>I'm a computer science student who builds working AI systems rather than notebooks. The work that matters to me is the unglamorous part: an eval that tells you whether a prompt change helped, a guard in code for the rule a model keeps breaking, and tracing a failure back to its real cause instead of guessing.</p>
+      <p>I build working AI systems rather than notebooks. The work that matters to me is the unglamorous part: an eval that tells you whether a prompt change helped, a guard in code for the rule a model keeps breaking, and tracing a failure back to its real cause instead of guessing.</p>
       <p>I'm looking for AI and automation engineering roles where I can keep doing this work on real business problems: fewer missed calls, faster replies, and details captured where the team will see them.</p>
-      <dl class="edu mono">
-        <div><dt>education</dt><dd>BS Computer Science, Virtual University of Pakistan</dd></div>
-        <div><dt>status</dt><dd>Semester 7, in progress</dd></div>
-      </dl>
     </div>
   </section>
 
