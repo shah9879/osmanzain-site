@@ -4,13 +4,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Osman Zain · AI &amp; Automation Engineer</title>
-  <meta name="description" content="Osman Zain builds LLM systems and tests them properly: evals, guardrails and automation that hold up on real inputs. Projects: GarageBot, LeadPilot, OutboundOps.">
+  <meta name="description" content="Osman Zain builds LLM systems and tests them properly: evals, guardrails and automation that hold up on real inputs. Projects: GarageBot, LeadPilot, ReachPilot.">
   <meta name="theme-color" content="#FBFCFF">
   <meta name="color-scheme" content="light">
   <link rel="canonical" href="https://osmanzain.com/">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Osman Zain · AI &amp; Automation Engineer">
-  <meta property="og:description" content="LLM systems with evals and guardrails: a RAG voice receptionist, a lead-qualification pipeline, a cold-calling CRM.">
+  <meta property="og:description" content="LLM systems with evals and guardrails: a RAG voice receptionist, a lead-qualification pipeline, an outreach tracker with AI reply triage.">
   <meta property="og:url" content="https://osmanzain.com/">
   <meta property="og:image" content="https://osmanzain.com/og.png">
   <meta name="twitter:card" content="summary_large_image">
@@ -43,7 +43,7 @@
       <p class="hello mono">&gt; hello, world. I'm</p>
       <h1>Osman Zain</h1>
       <p class="role mono">AI &amp; automation engineer</p>
-      <p class="bio">I build LLM systems and test them properly: evals, guardrails and automation that hold up on real inputs. Recent work includes a voice receptionist grounded in a shop's own data, a lead-qualification pipeline whose prompt I raised from 67% to 81% on an eval I wrote, and a cold-calling CRM.</p>
+      <p class="bio">I build LLM systems and test them properly: evals, guardrails and automation that hold up on real inputs. Recent work includes a voice receptionist grounded in a shop's own data, a lead-qualification pipeline whose prompt I raised from 67% to 81% on an eval I wrote, and an email outreach tracker that reads and classifies its own replies.</p>
       <div class="cta">
         <a class="btn" href="#projects">View projects</a>
         <a class="btn ghost" data-github href="https://github.com/shah9879">GitHub ↗</a>
@@ -61,7 +61,7 @@ osman zain · ai/automation engineer
 python · claude api · n8n · fastapi · sqlite
 
 <span class="p">$</span> ls projects/
-<span class="k">garagebot/</span>  <span class="k">leadpilot/</span>  <span class="k">outboundops/</span>
+<span class="k">garagebot/</span>  <span class="k">leadpilot/</span>  <span class="k">reachpilot/</span>
 </pre>
     </div>
   </section>
@@ -76,7 +76,11 @@ python · claude api · n8n · fastapi · sqlite
 
       <article class="card card-wide" id="garagebot">
         <header class="card-head"><h3 data-gb-name>GarageBot</h3><span class="chip mono">private repo</span></header>
-        <p class="desc">AI voice receptionist for auto repair shops. It answers a shop's forwarded calls from that shop's own hours, services and prices, then hands the shop a job card.</p>
+        <div class="problem">
+          <span class="label mono">the problem</span>
+          <p>Independent auto repair shops lose bookings every week because nobody can pick up when they're under a car or the shop is closed. By my estimate that's 3 to 5 bookings a week; at $150 each, roughly <b>$23,000 to $39,000 a year</b>. It's an estimate from my own arithmetic, not measured data.</p>
+        </div>
+        <p class="desc"><b>What I built:</b> an AI receptionist for U.S. auto repair shops. It answers calls and WhatsApp messages around the clock, trained on each shop's own hours, services and prices, then hands the shop a job card with the caller's details. Fewer missed calls, fewer lost bookings, no extra staff.</p>
         <ul class="proof">
           <li>Multi-tenant RAG on FastAPI: a separate ChromaDB collection per shop so one shop's data never enters another's answers.</li>
           <li>OpenAI-compatible streaming endpoint used as a Telnyx AI Assistant's custom LLM. Tuned prompts to keep spoken replies to about 15 words.</li>
@@ -113,25 +117,43 @@ python · claude api · n8n · fastapi · sqlite
 
       <article class="card">
         <header class="card-head"><h3>LeadPilot</h3><span class="chip mono">public repo</span></header>
-        <p class="desc">AI lead qualification and booking automation. Claude qualifies inbound roofing leads over text; an n8n workflow classifies each one, books an inspection, saves it to a CRM and alerts a human.</p>
+        <div class="problem">
+          <span class="label mono">the problem</span>
+          <p>Leads from Facebook ads, website forms and texts go cold when nobody replies in the first few minutes. Staff can't answer instantly, ask the same qualifying questions every time, tell a serious buyer from a tire-kicker, or spot a storm-damage emergency in a busy inbox.</p>
+        </div>
+        <p class="desc"><b>What I built:</b> an AI lead qualification and booking pipeline, tested on residential roofing. Claude replies straight away and asks the qualifying questions. An n8n workflow then sorts each lead (hot, warm, cold, disqualified or handoff), books an inspection, saves it to a CRM and alerts a person for anything urgent.</p>
+        <div class="usecases">
+          <span class="label mono">use cases</span>
+          <ul>
+            <li><b>Paid-ad leads.</b> Anything that can post a message to its webhook, such as a Facebook lead-form automation, a web form or an inbound text, gets a first reply and a classification before a human looks.</li>
+            <li><b>After hours and storm surges.</b> Hail season floods the inbox; nothing waits until morning.</li>
+            <li><b>Questions it handles:</b> "How much?" (it won't quote a price, and offers a free inspection); "Are you a bot?" (it says it's automated); an active roof leak (safety advice, then a person); renters and out-of-area callers (politely disqualified); commercial properties and angry customers (handed to a person).</li>
+          </ul>
+        </div>
         <ul class="proof">
           <li>Built the eval harness first: 12 cases, a simulated customer, rule-based and LLM-judged checks. It found its own judge was unreliable, and I fixed that before trusting any result.</li>
           <li>Prompt v1 → v2 on the same eval: <b>67% → 81%</b> (Haiku 4.5, 36 runs) and <b>83% → 100%</b> (Opus 5, 12 runs).</li>
           <li>Enforced "never quote a price" in code after Haiku wrote "$8k to $25k+" under pressure. 97 offline tests.</li>
         </ul>
         <ul class="tags mono"><li>Python</li><li>n8n</li><li>Claude API</li><li>SQLite</li><li>JavaScript</li><li>Evals</li></ul>
-        <p class="note">Small self-written case set: directional, not a benchmark. Runs locally; no live texts are sent.</p>
+        <p class="note">Small self-written case set: directional, not a benchmark. Runs locally; no live texts are sent, and the Facebook Lead Ads connection is not built (the entry point is a webhook).</p>
         <div class="links mono"><a href="https://github.com/shah9879/leadpilot">GitHub ↗</a><a href="https://github.com/shah9879/leadpilot#eval-results">Eval results ↗</a></div>
       </article>
 
       <article class="card">
-        <header class="card-head"><h3>OutboundOps</h3><span class="chip mono">private repo</span></header>
-        <p class="desc">Cold-calling CRM and lead-gen platform. A dependency-free Python backend built around real, concurrent, webhook-driven calls.</p>
+        <header class="card-head"><h3>ReachPilot</h3><span class="chip mono">local project</span></header>
+        <div class="problem">
+          <span class="label mono">the problem</span>
+          <p>Cold email outreach falls apart after the send: nobody knows who opened it, who clicked, or who replied. Replies sit unread, follow-ups get forgotten, and someone has to work out what each reply actually wants.</p>
+        </div>
+        <p class="desc"><b>What I built:</b> an email outreach tracker. It sends the emails, tracks opens and clicks, reads the inbox for replies, and automatically follows up with people who haven't engaged (after 3 days, at most twice). Claude then reads each reply and labels it with the sender's intent, a one-line summary and a suggested next action.</p>
         <ul class="proof">
-          <li>Standard-library Python around Telnyx Call Control for outbound and inbound calls across two countries, with a persistent webhook server dispatching each call to its own thread.</li>
-          <li>Browser softphone (Telnyx WebRTC) embedded in the CRM, a call queue with stage rules, and lead sourcing from the Google Places API. Deployed on Fly.io.</li>
+          <li>Reply analysis is schema-validated and advisory only: a failed call never blocks reply detection, and it was tested against a reply that tried to hijack the classifier.</li>
+          <li>Australian Spam Act rules are enforced in code: unsubscribed contacts can never be sent to, and the unsubscribe link needs a confirming click so mail scanners can't opt people out.</li>
+          <li>Diagnosed why opens never registered in Gmail: the free tunnel served an HTML warning page to Gmail's image proxy instead of the tracking pixel.</li>
         </ul>
-        <ul class="tags mono"><li>Python</li><li>SQLite</li><li>Telnyx Call Control</li><li>WebRTC</li><li>Fly.io</li><li>Google Places API</li></ul>
+        <ul class="tags mono"><li>Python</li><li>Flask</li><li>SQLite</li><li>Claude Haiku 4.5</li><li>IMAP / SMTP</li><li>66 offline tests</li></ul>
+        <p class="note">Code not published yet. Runs locally against a real mailbox.</p>
       </article>
     </div>
   </section>
@@ -164,6 +186,7 @@ python · claude api · n8n · fastapi · sqlite
     <ul class="contact mono">
       <li><span>email</span><a data-email-text href="#"></a></li>
       <li><span>github</span><a data-github-text href="#"></a></li>
+      <li data-whatsapp-row hidden><span>whatsapp</span><a data-whatsapp-link href="#"></a></li>
       <li data-linkedin-row hidden><span>linkedin</span><a data-linkedin-link href="#"></a></li>
     </ul>
   </section>

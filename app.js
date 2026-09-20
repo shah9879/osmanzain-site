@@ -12,6 +12,10 @@
   $$("[data-email]").forEach(function (a) { a.href = "mailto:" + cfg.email; });
   $$("[data-email-text]").forEach(function (a) { a.href = "mailto:" + cfg.email; a.textContent = cfg.email; });
   $$("[data-github-text]").forEach(function (a) { a.href = cfg.github; a.textContent = cfg.github.replace("https://", ""); });
+  if (cfg.whatsappNumber) {
+    $("[data-whatsapp-row]").hidden = false;
+    $$("[data-whatsapp-link]").forEach(function (a) { a.href = "https://wa.me/" + cfg.whatsappNumber; a.textContent = cfg.whatsappDisplay || ("+" + cfg.whatsappNumber); });
+  }
   if (cfg.linkedin) {
     $("[data-linkedin-row]").hidden = false;
     $$("[data-linkedin-link]").forEach(function (a) { a.href = cfg.linkedin; a.textContent = cfg.linkedin.replace("https://www.", "").replace("https://", ""); });

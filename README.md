@@ -8,7 +8,7 @@ PORT=8812 python3 serve.py        # http://localhost:8812  (serve.py supports HT
 ```
 
 ## Change things
-- **Links and names:** `site.config.js` (email, GitHub, LinkedIn, GarageBot's public name).
+- **Links and names:** `site.config.js` (email, GitHub, LinkedIn, WhatsApp, GarageBot's public name).
   An empty value hides that link, so nothing points nowhere.
 - **Text:** `index.html`. Colours and fonts are the variables at the top of `styles.css`.
 - **The demo call:** `assets/demo-call.m4a` plus `assets/demo.js` (turn timestamps and job-card fields). To replace
