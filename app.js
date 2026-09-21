@@ -18,10 +18,6 @@
     var url = social[a.getAttribute("data-social")];
     if (url) a.href = url; else a.hidden = true;   // no value configured: no link
   });
-  if (cfg.whatsappNumber) {
-    $("[data-whatsapp-row]").hidden = false;
-    $$("[data-whatsapp-link]").forEach(function (a) { a.href = "https://wa.me/" + cfg.whatsappNumber; a.textContent = cfg.whatsappDisplay || ("+" + cfg.whatsappNumber); });
-  }
   if (cfg.linkedin) {
     $("[data-linkedin-row]").hidden = false;
     $$("[data-linkedin-link]").forEach(function (a) { a.href = cfg.linkedin; a.textContent = cfg.linkedin.replace("https://www.", "").replace("https://", ""); });
